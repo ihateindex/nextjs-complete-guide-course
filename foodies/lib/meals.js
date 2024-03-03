@@ -1,4 +1,6 @@
 import sql from 'better-sqlite3';
+import slugify from 'slugify';
+import xss from 'xss';
 
 const db = sql('meals.db');
 
@@ -15,4 +17,11 @@ export async function getMeals() {
 
 export function getMeal(slug) {
     return db.prepare('SELECT * FROM meals WHERE slug = ?').get(slug);
+}
+
+export function saveMeal(meal) {
+    // * slugify를 이용한 slug 생성
+    meal.slug = slugify(meal.title, { lower: true });
+    // * xss 패키지를 이용한 xss 공격 검열
+    meal.instructions = xss(meal.instructions);
 }
