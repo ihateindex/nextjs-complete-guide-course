@@ -6,11 +6,10 @@ import { Suspense } from 'react';
 
 async function Meals() {
     const meals = await getMeals();
-    return <MealsGrid meals={meals}></MealsGrid>
+    return <MealsGrid meals={meals}></MealsGrid>;
 }
 
 export default function MealsPage() {
-
     return (
         <>
             <header className={styled.header}>
