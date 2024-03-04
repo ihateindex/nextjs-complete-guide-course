@@ -2,10 +2,9 @@
 import { redirect } from 'next/navigation';
 import { saveMeal } from './meals';
 
-export async function shareMeal(formData) {
+export async function shareMeal(previousState, formData) {
     function inInvalidText(text) {
-        if (!text || text.trim() === '') {
-        }
+        return !text || text.trim() === '';
     }
 
     const meal = {
@@ -21,14 +20,15 @@ export async function shareMeal(formData) {
         inInvalidText(meal.title) ||
         inInvalidText(meal.summary) ||
         inInvalidText(meal.instructions) ||
-        inInvalidText(meal.image) ||
         inInvalidText(meal.creator) ||
         inInvalidText(meal.creator_email) ||
         !meal.creator_email.includes('@') ||
         !meal.image ||
         meal.image.size === 0
     ) {
-        throw new Error('Invalid input');
+        return {
+            message: 'Invalid input.',
+        };
     }
     await saveMeal(meal);
     redirect('/meals');
