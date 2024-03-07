@@ -1,4 +1,4 @@
-import styled from './EventItem.module.css';
+import styles from './EventItem.module.css';
 import Button from '../ui/button';
 import DateIcon from '../icons/DateIcon';
 import AddressIcon from '../icons/AddressIcon';
@@ -16,24 +16,24 @@ function EventItem(props) {
     const exploreLink = `/events/${id}`;
 
     return (
-        <li className={styled.item}>
+        <li className={styles.item}>
             <img src={'/' + image} alt={title} />
-            <div className={styled.content}>
-                <div className={styled.summary}>
+            <div className={styles.content}>
+                <div className={styles.summary}>
                     <h2>{title}</h2>
-                    <div className={styled.date}>
+                    <div className={styles.date}>
                         <DateIcon></DateIcon>
                         <time>{humanReadableDate}</time>
                     </div>
-                    <div className={styled.address}>
+                    <div className={styles.address}>
                         <AddressIcon></AddressIcon>
                         <address>{formattedAddress}</address>
                     </div>
                 </div>
-                <div className={styled.actions}>
+                <div className={styles.actions}>
                     <Button link={exploreLink}>
                         <span>Explore Event</span>
-                        <span className={styled.icon}>
+                        <span className={styles.icon}>
                             <ArrowRightIcon></ArrowRightIcon>
                         </span>
                     </Button>
