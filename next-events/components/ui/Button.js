@@ -2,6 +2,7 @@ import Link from 'next/link';
 import styles from './Button.module.css';
 
 function Button(props) {
+    console.log(props.link);
     if (props.link) {
         return (
             <Link className={styles.btn} href={props.link}>
