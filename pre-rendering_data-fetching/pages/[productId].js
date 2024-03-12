@@ -21,7 +21,9 @@ export async function getStaticProps(context) {
     const jsonData = await fs.readFile(filePath);
     const data = JSON.parse(jsonData);
 
-    const product = data.products.find((product) => products.id === productId);
+    const product = data.products.find((product) => {
+        return product.id === productId;
+    });
 
     return {
         props: {
@@ -29,5 +31,12 @@ export async function getStaticProps(context) {
         },
     };
 }
+
+// export async function getStaticPaths() {
+//     return {
+//         paths: [{ params: { productId: 'p1' } }, { params: { productId: 'p2' } }, { params: { productId: 'p3' } }],
+//         fallback: false,
+//     };
+// }
 
 export default ProductDetailPage;
