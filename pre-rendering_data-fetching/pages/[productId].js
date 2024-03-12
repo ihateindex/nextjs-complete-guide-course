@@ -4,6 +4,10 @@ import fs from 'fs/promises';
 function ProductDetailPage(props) {
     const { loadedProduct } = props;
 
+    if (!loadedProduct) {
+        return <p>Loading...</p>;
+    }
+
     return (
         <>
             <h1>{loadedProduct.title}</h1>
@@ -32,11 +36,11 @@ export async function getStaticProps(context) {
     };
 }
 
-// export async function getStaticPaths() {
-//     return {
-//         paths: [{ params: { productId: 'p1' } }, { params: { productId: 'p2' } }, { params: { productId: 'p3' } }],
-//         fallback: false,
-//     };
-// }
+export async function getStaticPaths() {
+    return {
+        paths: [{ params: { productId: 'p1' } }],
+        fallback: true,
+    };
+}
 
 export default ProductDetailPage;
